@@ -41,8 +41,11 @@ def _get_ext(img):
 
 def _resize_image(height, width, img, ext):
     """Resize the image from the link"""
-    image = Image.open(img)
-    im2 = image.resize((height, width), Image.ANTIALIAS)
+    try:
+        image = Image.open(img)
+        im2 = image.resize((height, width), Image.ANTIALIAS)
+    except:
+        return False
     # Save image temp in memory using StringIO
     temp = cStringIO.StringIO()
     im2.save(temp, ext)
@@ -98,6 +101,8 @@ def api(size, url, return_type=None):
     # Get image extension
     ext = _get_ext(img)
     resized_image = _resize_image(height, width, img, ext)
+    if not resized_image:
+        return "Unsupported image file format"
     img_link = _upload_image(resized_image, unq_name, ext)
     if return_type == "link":
         # Return raw imgur link
