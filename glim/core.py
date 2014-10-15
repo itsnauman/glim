@@ -104,5 +104,3 @@ def api(size, url, return_type=None):
         return "<a href='%s'>%s</a>" % (img_link, img_link)
     # Return image to webpage
     return "<img src='%s'></img>" % img_link
-
-
