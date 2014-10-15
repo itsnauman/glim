@@ -1,4 +1,4 @@
-glim
+Glim
 ====
 Quickly Resize images using a web api endpoint
 
@@ -8,12 +8,12 @@ Quickly Resize images using a web api endpoint
  - Open `http://0.0.0.0:5000/`
 
 ## API
-Access the glim api using the endpoint: `/{height}x{width}/{type - optional}/{link}`
+Access the `glim` api using the endpoint: `/{height}x{width}/{type - optional}/{link}`
 
 ## Todo
- - Resize JPEG Images
- - Implement HTTPS
+ - Resize `JPEG` Images
+ - Implement `HTTPS`
  - Improve overall speed
 
 ## License
-glim is  under MIT license, see `LICENSE` for more details.
+`glim` is  under MIT license, see `LICENSE` for more details.
