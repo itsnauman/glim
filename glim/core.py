@@ -84,10 +84,10 @@ def main():
     return render_template('index.html')
 
 @app.route('/<string:size>/<path:url>')
-@app.route('/<string:size>/<string:type>/<path:url>')
-def api(size, url, type=None):
-    # Get sizes from url
-    sizes = size.split('x')
+@app.route('/<string:size>/<string:return_type>/<path:url>')
+def api(size, url, return_type=None):
+    """Api controller of glim"""
+    sizes = size.split('x') # Get sizes from url
     height = int(sizes[0])
     width = int(sizes[1])
     # Generate unique name
@@ -99,6 +99,10 @@ def api(size, url, type=None):
     ext = _get_ext(img)
     resized_image = _resize_image(height, width, img, ext)
     img_link = _upload_image(resized_image, unq_name, ext)
+    if return_type == "link":
+        # Return raw imgur link
+        return "<a href='%s'>%s</a>" % (img_link, img_link)
     # Return image to webpage
     return "<img src='%s'></img>" % img_link
+
 
