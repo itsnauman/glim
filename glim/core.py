@@ -86,7 +86,7 @@ def _random_string():
 @app.errorhandler(404)
 def handle_error(e):
     """Display the 404 template on error"""
-    return render_template('error.html')
+    return render_template('404.html')
 
 
 @app.route('/')
@@ -101,23 +101,27 @@ def api(size, url, return_type=None):
     """Api controller of glim"""
     # TODO: Regex match size string
     if "x" not in size:
-        return "Invalid size string, {height}x{width}"
+        err_size = "Size string invalid, {height}x{width}"
+        return render_template("errors.html", error_msg=err_size)
     sizes = size.split('x')  # Get sizes from url paramater
     try:
         height = int(sizes[0])
         width = int(sizes[1])
     except ValueError:
-        return "Invalid size, use integers only! eg 400x400"
+        err_int = "Size string invalid, use integers only! eg 400x400"
+        return render_template('errors.html', error_msg=err_int)
     # Generate unique name
     unq_name = _random_string()
     img = _get_image(url)
     if not img:
-        return "Invalid link"
+        err_link = "Invalid link, try again!"
+        return render_template('errors.html', error_msg=err_link)
     # Get image extension
     ext = _get_ext(img)
     resized_image = _resize_image(height, width, img, ext)
     if not resized_image:
-        return "Unsupported image file format"
+        err_format = "Unsupported image format!"
+        return render_template('errors.html', error_msg=err_format)
     img_link = _upload_image(resized_image, unq_name, ext)
     if return_type == "link":
         # Return raw imgur link
