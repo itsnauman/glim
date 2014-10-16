@@ -12,7 +12,7 @@ Access the `glim` api using the endpoint: `/{height}x{width}/{type - optional}/{
 
 ## Todo
  - Resize `JPEG` Images
- - Implement 'SSL`
+ - Implement `SSL`
  - Improve overall speed
 
 ## License
