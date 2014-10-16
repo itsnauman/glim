@@ -10,7 +10,6 @@ import imghdr
 import string
 import random
 
-# TODO: resize jpg images
 # Imgur API Details
 CLIENT_ID = '29619ae5d125ae6'
 API_KEY = 'f8d933801d55307b588eca4218a66695f1518338'

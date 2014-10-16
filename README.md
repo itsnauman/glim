@@ -10,10 +10,5 @@ Quickly Resize images using a web api endpoint. Your image will be resized no ma
 ## API
 Access the `glim` api using the endpoint: `/{height}x{width}/{type - optional}/{link}`
 
-## Todo
- - Resize `JPEG` Images
- - Implement `SSL`
- - Improve overall speed
-
 ## License
 `glim` is  under MIT license, see `LICENSE` for more details.
