@@ -16,6 +16,7 @@ CLIENT_ID = '29619ae5d125ae6'
 API_KEY = 'f8d933801d55307b588eca4218a66695f1518338'
 END_POINT = 'https://api.imgur.com/3/upload.json'
 
+
 def _protocol(url):
     """Checks if http:// is present before Url"""
     parsed = urlparse(url)
@@ -23,6 +24,7 @@ def _protocol(url):
         return "http://" + url
     else:
         return url
+
 
 def _get_image(link):
     """Get image from a link"""
@@ -34,10 +36,12 @@ def _get_image(link):
     img = StringIO.StringIO(fp.content)
     return img
 
+
 def _get_ext(img):
     """Get Image Extension"""
     image_ext = imghdr.what(img)
     return image_ext
+
 
 def _resize_image(height, width, img, ext):
     """Resize the image from the link"""
@@ -52,21 +56,23 @@ def _resize_image(height, width, img, ext):
     temp.seek(0)
     return temp.getvalue()
 
+
 def _upload_image(img, name, ext):
     """Upload resized image to Imgur"""
     headers = {"Authorization": "Client-ID 29619ae5d125ae6"}
     response_data = requests.post(
-    END_POINT,
-    headers = headers,
-    data = {
-        'key': API_KEY,
-        'image': base64.b64encode(img),
-        'type': 'base64',
-        'name': "%s.%s" % (name, ext),
-        'title': name
+        END_POINT,
+        headers=headers,
+        data={
+            'key': API_KEY,
+            'image': base64.b64encode(img),
+            'type': 'base64',
+            'name': "%s.%s" % (name, ext),
+            'title': name
         }
     )
     return response_data.json()['data']['link']
+
 
 def _random_string():
     """Generates a random name for image"""
@@ -76,21 +82,24 @@ def _random_string():
         rv += random.choice(string.ascii_lowercase)
     return rv
 
+
 @app.errorhandler(404)
 def handle_error(e):
     """Display the 404 template on error"""
     return render_template('error.html')
+
 
 @app.route('/')
 def main():
     """Main routing function"""
     return render_template('index.html')
 
+
 @app.route('/<string:size>/<path:url>')
 @app.route('/<string:size>/<string:return_type>/<path:url>')
 def api(size, url, return_type=None):
     """Api controller of glim"""
-    sizes = size.split('x') # Get sizes from url
+    sizes = size.split('x')  # Get sizes from url
     height = int(sizes[0])
     width = int(sizes[1])
     # Generate unique name
