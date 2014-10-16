@@ -99,9 +99,15 @@ def main():
 @app.route('/<string:size>/<string:return_type>/<path:url>')
 def api(size, url, return_type=None):
     """Api controller of glim"""
-    sizes = size.split('x')  # Get sizes from url
-    height = int(sizes[0])
-    width = int(sizes[1])
+    # TODO: Regex match size string
+    if "x" not in size:
+        return "Invalid size string, {height}x{width}"
+    sizes = size.split('x')  # Get sizes from url paramater
+    try:
+        height = int(sizes[0])
+        width = int(sizes[1])
+    except ValueError:
+        return "Invalid size, use integers only! eg 400x400"
     # Generate unique name
     unq_name = _random_string()
     img = _get_image(url)
