@@ -1,3 +1,16 @@
+"""
+        _ _           
+   __ _| (_)_ __ ___  
+  / _` | | | '_ ` _ \ 
+ | (_| | | | | | | | |
+  \__, |_|_|_| |_| |_|
+  |___/  
+
+author: Nauman Ahmad
+description: An API endpoint to quickly resize images.
+version: 0.1
+license: MIT
+"""
 from glim import app
 from flask import render_template
 from PIL import Image
