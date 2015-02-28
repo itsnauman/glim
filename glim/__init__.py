@@ -4,4 +4,5 @@ import os
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-import glim.core
+import glim.controller
+import glim.utils
