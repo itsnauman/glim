@@ -19,14 +19,16 @@ import cStringIO
 import imghdr
 import string
 import random
+import os
 
 # Dependencies
 from PIL import Image
 import requests
 
 # Imgur API Details
-CLIENT_ID = '29619ae5d125ae6'
-API_KEY = 'f8d933801d55307b588eca4218a66695f1518338'
+CLIENT_ID = os.environ["IMGUR_CLIENT_KEY"]
+API_KEY = os.environ["IMGUR_API_KEY"]
+
 END_POINT = 'https://api.imgur.com/3/upload.json'
 
 

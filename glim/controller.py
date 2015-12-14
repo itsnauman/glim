@@ -33,8 +33,6 @@ def index():
 @app.route('/<string:size>/<path:url>')
 @app.route('/<string:size>/<string:return_type>/<path:url>')
 def api(size, url, return_type=None):
-    """API Controller"""
-
     # TODO: Regex match size string
     if "x" not in size:
         err_size = "Size string invalid, {height}x{width}"
